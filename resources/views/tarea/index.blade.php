@@ -18,17 +18,17 @@
                         <div class="card">
                             <div class="card-header">
                                 Tarea
-                                <a href="{{ route('tareas.create') }}" class="btn btn-primary float-end btn-sm"><i class="fa fa-solid fa-plus"></i> Create New</a>
+                                <a href="{{ route('tareas.create') }}" class="btn btn-primary float-end btn-sm"><i class="fa fa-solid fa-plus"></i> Crear Registro</a>
                             </div>
                             <div class="card-body">
                                 <!-- Search and Filter Form -->
                                 <form action="{{ route('tareas.index') }}" method="GET" class="row g-3">
                                     <div class="col-md-4">
-                                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Search" value="{{ request('search') }}">
+                                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Buscar" value="{{ request('search') }}">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="submit" class="btn btn-primary btn-sm">Search</button>
-                                        <a href="{{ route('tareas.index') }}"><button type="submit" class="btn btn-secondary btn-sm">Search</button></a>
+                                        <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                                        <a href="{{ route('tareas.index',  [ 'search' =>  '' ]) }}"><button type="submit" class="btn btn-secondary btn-sm">Ver Todo</button></a>
                                     </div>
                                 </form>
                                 
@@ -39,10 +39,10 @@
                                                 <th>No</th>
                                                 
 										<th>Tarea</th>
-										<th>Contact </th>
-										<th>Tipotarea </th>
+										<th>Contacto </th>
+										<th>Tipo de tarea </th>
 
-                                                <th>Action</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,11 +56,11 @@
 
                                                     <td>
                                                         <form action="{{ route('tareas.destroy',$tarea->id) }}" method="POST">
-                                                            <a class="btn btn-sm btn-primary " href="{{ route('tareas.show',$tarea->id) }}"><i class="fa fa-fw fa-eye"></i> Show </a>
-                                                            <a class="btn btn-sm btn-success" href="{{ route('tareas.edit',$tarea->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                            <a class="btn btn-sm btn-primary " href="{{ route('tareas.show',$tarea->id) }}"><i class="fa fa-fw fa-eye"></i> Ver </a>
+                                                            <a class="btn btn-sm btn-success" href="{{ route('tareas.edit',$tarea->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>

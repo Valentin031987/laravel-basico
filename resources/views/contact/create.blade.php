@@ -7,8 +7,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/contacts">Contacts</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Contact</li>
+                        <li class="breadcrumb-item"><a href="/contacts">Contactos</a></li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Contacto</li>
                     </ol>
                 </nav>
             </div>
@@ -16,7 +16,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Create Contact
+                        Crear Contacto
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('contacts.store') }}" role="form"
@@ -24,7 +24,6 @@
                             @csrf
 
                             @include('contact.form')
-
                         </form>
                     </div>
                 </div>

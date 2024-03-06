@@ -7,15 +7,15 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/tipotareas">Tipotareas</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Tipotarea</li>
+                        <li class="breadcrumb-item"><a href="/tipotareas">Tipos de tarea</a></li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Tipo de tarea</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Show Tipotarea
+                        Show Tipo de tarea
                             <a class="btn btn-primary float-end btn-sm" href="{{ route('tipotareas.index') }}"> Back </a>
                     </div>
                     <div class="card-body">

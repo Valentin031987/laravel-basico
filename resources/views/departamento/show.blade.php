@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/departamentos">Departamentos</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Departamento</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Departamento</li>
                     </ol>
                 </nav>
             </div>

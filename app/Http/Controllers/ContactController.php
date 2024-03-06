@@ -10,39 +10,29 @@ use Illuminate\Support\Str;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * Initialize the query builder for the model.
-     * Check if a search term is provided in the request.
-     * Add conditions to filter results based on the search term.
-     * Retrieve paginated results for the model.
-     * Return the index view with the retrieved results.
+     * Muestra lista de registros.
+     * Inicializa filtrado para el modelo.
+     * Verifica si un campo de busqueda ha sido pasado en la solicitud.
+     * Se filtran los datos en funcion del campo de busqueda
+     * Regresa los registros filtrados
+     * Entrega los datos a la vista correspondiente
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $query = Contact::query();
+        $contacts = Contact::search($request);
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                foreach (Contact::$searchable as $attribute) {
-                    $q->orWhere($attribute, 'like', '%' . $search . '%');
-                }
-            });
-        }
-
-        $contacts = $query->paginate();
         return view('contact.index', [
             'contacts' => $contacts,
         ])->with('i', (request()->input('page', 1) - 1) * $contacts->perPage());
     }
 
     /**
-     * Show the form for creating a new resource.
-     * Create a new instance of the model.
-     * Retrieve related data for belongsTo relationships.
-     * Return the create view with the model instance and related data.
+     * Muestra el formulario para crear un nuevo registro
+     * Crea una nueva instancia del modelo
+     * Busca datos en las tablas relacionadas
+     * Entraga a la vista la instancia del modelo y los datos relacionados (belongsTo)
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,10 +45,10 @@ class ContactController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * Validate the incoming request.
-     * Create a new record in the database.
-     * Redirect to the index route with a success message.
+     * Almacena un nuevo registro a la base de datos
+     * Valida los campos de la solicitud
+     * Crea un nuevo registro 
+     * Redirige al index con el mensaje de éxito
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -67,13 +57,14 @@ class ContactController extends Controller
     {
         request()->validate(Contact::$rules);
         $contact = Contact::create($request->all());
-        return redirect()->route('contacts.index')
-            ->with('success', 'Contact created successfully.');
+        // return redirect()->route('contacts.index')
+        //     ->with('success', 'Contacto creado correctamente.');
+        return redirect()->route('contacts.edit', $contact->id);
     }
 
     /**
      * Display the specified resource.
-     * Find the model instance by ID.
+     * Ubica el registro por su id
      * Return the show view with the model instance.
      *
      * @param  int $id
@@ -81,15 +72,15 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::whereId($id)->with('cargo', 'departamento')->get()[0];
         return view('contact.show', ['contact' => $contact]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * Find the model instance by ID.
-     * Retrieve related data for belongsTo relationships.
-     * Return the edit view with the model instance and related data.
+     * Metodo que muestra el formulario para editar un registro
+     * Ubica el registro por su id
+     * Busca datos en las tablas relacionadas
+     * Redirige a la vista de edición de registro con los datos del registro junto con los datos de las tablas con las que el registro tiene alguna relación
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
@@ -111,10 +102,10 @@ class ContactController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     * Validate the incoming request.
-     * Update the model instance with the request data.
-     * Redirect to the index route with a success message.
+     * Metodo para actualizar un registro
+     * Valida los campos de la solicitud
+     * Actualiza la instancia del modelo con los datos de la solicitud
+     * Redirige al index con el mensaje de éxito
      *
      * @param  \Illuminate\Http\Request $request
      * @param  Contact $contact
@@ -124,13 +115,13 @@ class ContactController extends Controller
     {
         request()->validate(Contact::$rules);
         $contact->update($request->all());
-        return redirect()->route('contacts.index')->with('success', 'Contact updated successfully');
+        return redirect()->route('contacts.index')->with('success', 'Contacto actualizado correctamente');
     }
 
     /**
-     * Remove the specified resource from storage.
-     * Find and delete the model instance by ID.
-     * Redirect to the index route with a success message.
+     * Recibe el id del registro en la solicitud
+     * Ubica el registro por su id y si existe, lo elimina
+     * Redirige al index con el mensaje de éxito
      *
      * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
@@ -138,31 +129,6 @@ class ContactController extends Controller
     public function destroy($id)
     {
         Contact::find($id)->delete();
-        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully');
-    }
-
-    /**
-     * Retrieve related data for belongsTo relationships.
-     * Iterate over the fillable columns of the model.
-     * If a column ends with '_id', assume it represents a belongsTo relationship.
-     * Construct the relation name and related model class name.
-     * If the related model class exists, load all its records.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model $model
-     * @return array
-     */
-    protected function getRelatedData($model)
-    {
-        $relatedData = [];
-        foreach ($model->getFillable() as $column) {
-            if (Str::endsWith($column, '_id')) {
-                $relationName = Str::before($column, '_id');
-                $relatedModelClass = 'App\\Models\\' . Str::studly($relationName);
-                if (class_exists($relatedModelClass)) {
-                     $relatedData[Str::plural($relationName)] = $relatedModelClass::all();
-                }
-            }
-        }
-        return $relatedData;
+        return redirect()->route('contacts.index')->with('success', 'Contacto eliminado correctamente');
     }
 }

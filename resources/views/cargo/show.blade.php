@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/cargos">Cargos</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Cargo</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Cargo</li>
                     </ol>
                 </nav>
             </div>

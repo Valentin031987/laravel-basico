@@ -24,24 +24,25 @@ class Tarea extends Model
 {
 
 
-    // Validation rules for this model
+    // Reglas de validación para éste modelo
     static $rules = [
         'tarea' => 'required',
         'contact_id' => 'required',
         'tipotarea_id' => 'required',
     ];
 
-    // Number of items to be shown per page
+    // Número de filas mostradas por página de resultados (sql)
     protected $perPage = 20;
 
-    // Attributes that should be mass-assignable
+    // Atributos que son "setteables" desde mi logica de dominio, de otro modo no puedo asignarles un valor
     protected $fillable = ['tarea', 'contact_id', 'tipotarea_id'];
 
-    // Attributes that are searchable
+    // Atributos habilitados para realizar búsquedas
     static $searchable = ['tarea', 'contact_id', 'tipotarea_id'];
 
 
     /**
+     * Relación con cargo, contacto - tarea, 1-*, varias tareas pertenecen a un contacto
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function contact()
@@ -50,6 +51,7 @@ class Tarea extends Model
     }
 
     /**
+     * Relación con tipo de tarea, tarea - tipodetarea, * - 1, una tarea pertenece a un tipo
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function tipotarea()

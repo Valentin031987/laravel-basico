@@ -19,28 +19,45 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Departamento extends Model
 {
-    
-    
-    // Validation rules for this model
-    static $rules = [
-		'nombre' => 'required',];
-    
-    // Number of items to be shown per page
-    protected $perPage = 20;
 
-    // Attributes that should be mass-assignable
-    protected $fillable = ['nombre'];
-    
-    // Attributes that are searchable
-    static $searchable = ['nombre'];
-    
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function contacts()
-    {
-        return $this->hasMany('App\Models\Contact', 'departamento_id', 'id');
+  // Reglas de validación para éste modelo
+  static $rules = [
+    'nombre' => 'required',
+  ];
+
+  // Número de filas mostradas por página de resultados (sql)
+  protected $perPage = 20;
+
+  // Atributos que son "setteables" desde mi logica de dominio, de otro modo no puedo asignarles un valor
+  protected $fillable = ['nombre'];
+
+  // Atributos habilitados para realizar búsquedas
+  static $searchable = ['nombre'];
+
+
+  /**
+   * Relación con cargo, contacto - departamento, * - 1, un contacto pertenece a un departamento
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function contacts()
+  {
+    return $this->hasMany('App\Models\Contact', 'departamento_id', 'id');
+  }
+
+  //filtrando de registros por los atributos del modelo
+  public static function search($request)
+  {
+    $query = Departamento::query();
+
+    if ($request->has('search')) {
+      $search = $request->input('search');
+      $query->where(function ($q) use ($search) {
+        foreach (Departamento::$searchable as $attribute) {
+          $q->orWhere($attribute, 'like', '%' . $search . '%');
+        }
+      });
     }
-    
+
+    return $query->paginate();
+  }
 }

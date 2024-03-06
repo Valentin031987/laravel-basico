@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="contacts">Contacts</li>
+                        <li class="breadcrumb-item active" aria-current="contacts">Contactos</li>
                     </ol>
                 </nav>
             </div>
@@ -17,19 +17,19 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                Contact
+                                Contacto
                                 <a href="{{ route('contacts.create') }}" class="btn btn-primary float-end btn-sm"><i
-                                        class="fa fa-solid fa-plus"></i> Create New</a>
+                                        class="fa fa-solid fa-plus"></i> Crear Registro</a>
                             </div>
                             <div class="card-body">
                                 <!-- Search and Filter Form -->
                                 <form action="{{ route('contacts.index') }}" method="GET" class="row g-3">
                                     <div class="col-md-4">
                                         <input type="text" name="search" class="form-control form-control-sm"
-                                            placeholder="Search" value="{{ request('search') }}">
+                                            placeholder="Buscar" value="{{ request('search') }}">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
                                         <a href="{{ route('contacts.index') }}"><button type="submit"
                                                 class="btn btn-secondary btn-sm">Search</button></a>
                                     </div>
@@ -45,13 +45,7 @@
                                                 <th>Empresa Cliente</th>
                                                 <th>Fecha Ultima Modificacion</th>
                                                 <th>Correo</th>
-                                                <th>Direccion</th>
-                                                <th>Telefono</th>
-                                                <th>Movil</th>
-                                                <th>Departamento </th>
-                                                <th>Cargo </th>
-
-                                                <th>Action</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,25 +58,20 @@
                                                     <td>{{ $contact->empresa_cliente }}</td>
                                                     <td>{{ $contact->fecha_ultima_modificacion }}</td>
                                                     <td>{{ $contact->correo }}</td>
-                                                    <td>{{ $contact->direccion }}</td>
-                                                    <td>{{ $contact->telefono }}</td>
-                                                    <td>{{ $contact->movil }}</td>
-                                                    {{-- <td>{{ $contact->1->name }}</td>
-											<td>{{ $contact->1->name }}</td> --}}
 
                                                     <td>
                                                         <form action="{{ route('contacts.destroy', $contact->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
                                                                 href="{{ route('contacts.show', $contact->id) }}"><i
-                                                                    class="fa fa-fw fa-eye"></i> Show </a>
+                                                                    class="fa fa-fw fa-eye"></i> Ver </a>
                                                             <a class="btn btn-sm btn-success"
                                                                 href="{{ route('contacts.edit', $contact->id) }}"><i
-                                                                    class="fa fa-fw fa-edit"></i> Edit</a>
+                                                                    class="fa fa-fw fa-edit"></i> Editar</a>
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                    class="fa fa-fw fa-trash"></i> Delete</button>
+                                                                    class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>

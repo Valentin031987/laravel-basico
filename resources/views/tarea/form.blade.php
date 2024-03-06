@@ -8,10 +8,10 @@
             @enderror
         </div>
     <div class="col-md-6">
-        <label for="contact_id">Contact</label>
+        <label for="contact_id">Contacto</label>
         
         <select class="form-select @error('contact_id') is-invalid @enderror" name="contact_id" id="contact_id">
-            <option value="">Select Contact</option>
+            <option value="">Select Contacto</option>
             @foreach($contacts as $relatedItem)
                 <option value="{{ $relatedItem->id }}" {{ old('contact_id', @$tarea->contact_id) == $relatedItem->id ? 'selected' : '' }}>
                     {{ $relatedItem->name }}
@@ -23,10 +23,10 @@
         @enderror
     </div>
     <div class="col-md-6">
-        <label for="tipotarea_id">Tipotarea</label>
+        <label for="tipotarea_id">Tipo de tarea</label>
         
         <select class="form-select @error('tipotarea_id') is-invalid @enderror" name="tipotarea_id" id="tipotarea_id">
-            <option value="">Select Tipotarea</option>
+            <option value="">Select Tipo de tarea</option>
             @foreach($tipotareas as $relatedItem)
                 <option value="{{ $relatedItem->id }}" {{ old('tipotarea_id', @$tarea->tipotarea_id) == $relatedItem->id ? 'selected' : '' }}>
                     {{ $relatedItem->name }}
@@ -39,5 +39,5 @@
     </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </div>

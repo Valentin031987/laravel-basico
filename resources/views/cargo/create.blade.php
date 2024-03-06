@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/cargos">Cargos</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Cargo</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Cargo</li>
                     </ol>
                 </nav>
             </div>
@@ -16,7 +16,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                       Create Cargo
+                       Crear Cargo
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('cargos.store') }}"  role="form" enctype="multipart/form-data" class="row g-3">

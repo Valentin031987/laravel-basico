@@ -8,8 +8,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/contacts">Contacts</a></li>
-                        <li class="breadcrumb-item active" aria-current="edit">Edit Contact</li>
+                        <li class="breadcrumb-item"><a href="/contacts">Contactos</a></li>
+                        <li class="breadcrumb-item active" aria-current="edit">Editar Contacto</li>
                     </ol>
                 </nav>
             </div>
@@ -17,7 +17,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Update Contact
+                        Editar Contacto
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('contacts.update', $contact->id) }}"  role="form" enctype="multipart/form-data" class="row g-3">

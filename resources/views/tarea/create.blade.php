@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/tareas">Tareas</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Tarea</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Tarea</li>
                     </ol>
                 </nav>
             </div>
@@ -16,7 +16,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                       Create Tarea
+                       Crear Tarea
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('tareas.store') }}"  role="form" enctype="multipart/form-data" class="row g-3">

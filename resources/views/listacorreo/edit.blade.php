@@ -9,7 +9,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/listacorreos">Listacorreos</a></li>
-                        <li class="breadcrumb-item active" aria-current="edit">Edit Listacorreo</li>
+                        <li class="breadcrumb-item active" aria-current="edit">Editar Listacorreo</li>
                     </ol>
                 </nav>
             </div>
@@ -17,7 +17,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Update Listacorreo
+                        Editar Listacorreo
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('listacorreos.update', $listacorreo->id) }}"  role="form" enctype="multipart/form-data" class="row g-3">

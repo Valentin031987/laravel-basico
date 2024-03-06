@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/listacorreos">Listacorreos</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Listacorreo</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Listacorreo</li>
                     </ol>
                 </nav>
             </div>
@@ -30,7 +30,7 @@
                             {{ $listacorreo->correo }}
                         </div>
                         <div class="col-md-6">
-                            <strong>Contact :</strong>
+                            <strong>Contacto :</strong>
                             {{ $listacorreo->contact_id }}
                         </div>
 

@@ -4,24 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CargoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Cargo::query();
-
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                foreach (Cargo::$searchable as $attribute) {
-                    $q->orWhere($attribute, 'like', '%' . $search . '%');
-                }
-            });
-        }
-
-        $cargos = $query->paginate();
+        $cargos = Cargo::search($request);
         return view('cargo.index', [
             'cargos' => $cargos,
         ])->with('i', (request()->input('page', 1) - 1) * $cargos->perPage());
@@ -39,7 +27,7 @@ class CargoController extends Controller
         request()->validate(Cargo::$rules);
         $cargo = Cargo::create($request->all());
         return redirect()->route('cargos.index')
-            ->with('success', 'Cargo created successfully.');
+            ->with('success', 'Cargo creado correctamente.');
     }
 
     public function show($id)
@@ -61,27 +49,12 @@ class CargoController extends Controller
     {
         request()->validate(Cargo::$rules);
         $cargo->update($request->all());
-        return redirect()->route('cargos.index')->with('success', 'Cargo updated successfully');
+        return redirect()->route('cargos.index')->with('success', 'Cargo actualizado correctamente');
     }
 
     public function destroy($id)
     {
         Cargo::find($id)->delete();
-        return redirect()->route('cargos.index')->with('success', 'Cargo deleted successfully');
-    }
-
-    protected function getRelatedData($model)
-    {
-        $relatedData = [];
-        foreach ($model->getFillable() as $column) {
-            if (Str::endsWith($column, '_id')) {
-                $relationName = Str::before($column, '_id');
-                $relatedModelClass = 'App\\Models\\' . Str::studly($relationName);
-                if (class_exists($relatedModelClass)) {
-                     $relatedData[Str::plural($relationName)] = $relatedModelClass::all();
-                }
-            }
-        }
-        return $relatedData;
+        return redirect()->route('cargos.index')->with('success', 'Cargo eliminado correctamente');
     }
 }

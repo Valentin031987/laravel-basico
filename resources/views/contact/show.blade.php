@@ -7,15 +7,15 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/contacts">Contacts</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Contact</li>
+                        <li class="breadcrumb-item"><a href="/contacts">Contactos</a></li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Contacto</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Show Contact
+                        Show Contacto
                         <a class="btn btn-primary float-end btn-sm" href="{{ route('contacts.index') }}"> Back </a>
                     </div>
                     <div class="card-body">

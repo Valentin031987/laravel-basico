@@ -22,25 +22,24 @@ use Illuminate\Database\Eloquent\Model;
 class Listacorreo extends Model
 {
 
-
-  // Validation rules for this model
+  // Reglas de validación para éste modelo
   static $rules = [
     'nombre' => 'required',
     'correo' => 'required',
     'contact_id' => 'required',
   ];
 
-  // Number of items to be shown per page
+  // Número de filas mostradas por página de resultados (sql)
   protected $perPage = 20;
 
-  // Attributes that should be mass-assignable
+  // Atributos que son "setteables" desde mi logica de dominio, de otro modo no puedo asignarles un valor
   protected $fillable = ['nombre', 'correo', 'contact_id'];
 
-  // Attributes that are searchable
+  // Atributos habilitados para realizar búsquedas
   static $searchable = ['nombre', 'correo', 'contact_id'];
 
-
   /**
+   * Relación con cargo, contacto - correos, 1 - *, muchos correos pertenecen a un contacto
    * @return \Illuminate\Database\Eloquent\Relations\HasOne
    */
   public function contact()

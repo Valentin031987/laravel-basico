@@ -8,7 +8,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/tareas">Tareas</a></li>
-                        <li class="breadcrumb-item active" aria-current="create">Add Tarea</li>
+                        <li class="breadcrumb-item active" aria-current="create">Crear Tarea</li>
                     </ol>
                 </nav>
             </div>
@@ -26,11 +26,11 @@
                             {{ $tarea->tarea }}
                         </div>
                         <div class="col-md-6">
-                            <strong>Contact :</strong>
+                            <strong>Contacto :</strong>
                             {{ $tarea->contact_id }}
                         </div>
                         <div class="col-md-6">
-                            <strong>Tipotarea :</strong>
+                            <strong>Tipo de tarea :</strong>
                             {{ $tarea->tipotarea_id }}
                         </div>
 
